@@ -160,7 +160,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <ScrollView style={{ backgroundColor: "#F0F0F0", marginTop: 50 }}>
+      <ScrollView style={{ backgroundColor: "white", marginTop: 50 }}>
 
         {/* Location and Profile Segment (Top) */}
         <View
@@ -207,7 +207,7 @@ const HomeScreen = () => {
 
         {/* Render all the Products */}
         {services.map((item, index) => (
-          <DressItem item={item} key={index} />
+            <DressItem item={item} key={index} />
         ))}
 
       </ScrollView>
@@ -233,9 +233,7 @@ const HomeScreen = () => {
             <Text style={{ fontSize: 13, fontWeight: "400", color: "white", marginVertical: 6 }}>Extra charges might apply</Text>
           </View>
 
-          <Pressable>
-            <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
-          </Pressable>
+          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
         </Pressable>
       )}
     </>

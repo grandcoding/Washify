@@ -19,13 +19,15 @@ const DressItem = ({ item }) => {
     <View>
       <Pressable
         style={{
-          backgroundColor: "#F8F8F8",
+          backgroundColor: "white",
           borderRadius: 8,
           padding: 10,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
           margin: 14,
+          borderWidth: 1,
+          borderColor : '#F5F5F5',
         }}
       >
         <View>

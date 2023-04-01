@@ -28,14 +28,16 @@ const Services = () => {
     },
 
   ];
+
   return (
     <View style={{ padding: 10 }}>
       <Text style={{ fontSize: 16, fontWeight: "500", marginBottom: 7 }}>Services Available</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {services.map((service, index) => (
-          <Pressable style={{ margin: 10, backgroundColor: "white", padding: 20, borderRadius: 7 }} key={index}>
+          <Pressable style={{
+            margin: 10, backgroundColor: "white", padding: 20, borderRadius: 7, borderWidth: 1, borderColor: '#F5F5F5',
+          }} key={index}>
             <Image source={{ uri: service.image }} style={{ width: 70, height: 70 }} />
-
             <Text style={{ textAlign: "center", marginTop: 10 }}>{service.name}</Text>
           </Pressable>
         ))}
@@ -46,4 +48,9 @@ const Services = () => {
 
 export default Services
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  elevation: {
+    shadowColor: 'black',
+    elevation: 20,
+  },
+})

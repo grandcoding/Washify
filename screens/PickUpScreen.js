@@ -11,17 +11,19 @@ import {
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-// import DatePicker from "react-horizontal-datepicker";
 import HorizontalDatePicker from '@logisticinfotech/react-native-horizontal-date-picker';
 
 const PickUpScreen = () => {
   const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState([]);
+  const [delivery, setDelivery] = useState([]);
+
   const cart = useSelector((state) => state.cart.cart);
   const total = cart
     .map((item) => item.quantity * item.price)
     .reduce((curr, prev) => curr + prev, 0);
-  const [selectedTime, setSelectedTime] = useState([]);
-  const [delivery, setDelivery] = useState([]);
+
+
   const deliveryTime = [
     {
       id: "0",
@@ -41,7 +43,7 @@ const PickUpScreen = () => {
     },
     {
       id: "4",
-      name: "Tommorrow",
+      name: "Tomorrow",
     },
   ];
 
@@ -74,28 +76,38 @@ const PickUpScreen = () => {
 
   const navigation = useNavigation();
   const proceedToCart = () => {
-    // if (!selectedDate || !selectedTime || !delivery) {
-    //   Alert.alert(
-    //     "Empty or invalid",
-    //     "Please select all the fields",
-    //     [
-    //       {
-    //         text: "Cancel",
-    //         onPress: () => console.log("Cancel Pressed"),
-    //         style: "cancel"
-    //       },
-    //       { text: "OK", onPress: () => console.log("OK Pressed") }
-    //     ],
-    //     { cancelable: false }
-    //   );
-    // }
-    // if (selectedDate && selectedTime && delivery) {
+    if (selectedDate.length == 0 || selectedTime.length == 0 || delivery.length == 0) {
+      Alert.alert(
+        "Empty or invalid",
+        "Please select all the fields",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
+    }
+    else if (selectedDate && selectedTime && delivery) {
       navigation.navigate("Cart", {
         pickUpDate: selectedDate,
         selectedTime: selectedTime,
         no_Of_days: delivery,
       })
-    // }
+    }
+  }
+
+  onDateSelected = date => {
+    console.log('Selected Date:==>', date);
+    setSelectedDate(date);
+  }
+
+  onTimeSelected = time => {
+    console.log('Selected Time:==>', time);
+    setSelectedTime(time);
   }
 
   return (
@@ -106,10 +118,9 @@ const PickUpScreen = () => {
         </Text>
         <TextInput
           style={{
-            padding: 40,
+            padding: 10,
             borderColor: "gray",
             borderWidth: 0.7,
-            paddingVertical: 80,
             borderRadius: 9,
             margin: 10,
           }}
@@ -123,57 +134,28 @@ const PickUpScreen = () => {
           pickerType={'datetime'}
           minDate={new Date()}
           defaultSelected={new Date()}
-          // datePickerBG={require('https://images.pexels.com/photos/4466461/pexels-photo-4466461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')}
-          // timePickerBG={require('https://images.pexels.com/photos/4466461/pexels-photo-4466461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)}
+          datePickerBG={require('../assets/bg-flower-1.jpg')}
           dayFormat={'DD'}
           monthFormat={'MMM'}
           yearFormat={'YY'}
-          timeFormat={'HH:mm a'}
+          timeFormat={'hh:mm A'}
           timeStep={120}
           returnDateFormat={'Do MMMM YY'}
-          returnTimeFormat={'hh:mm a'}
+          returnTimeFormat={'hh:mm A'}
           returnDateTimeFormat={'DD-MM-YYYY HH:mm'}
-          onDateSelected={this.onDateSelected}
-          onTimeSelected={this.onTimeSelected}
-          onDateTimeSelected={this.onDateTimeSelected}
+          onDateSelected={onDateSelected}
+          onTimeSelected={onTimeSelected}
+          isShowYear={false}
+          unSelectedTextStyle={{
+            fontWeight: 'bold',
+          }}
+          SelectedTextStyle={{
+            fontWeight: 'bold',
+          }}
         />
 
-        {/* TO DO: Reevaluate (is there any problem with these comments) */}
-        
-        {/* <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
-          Select Time
-        </Text> */}
-
-        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {times.map((item, index) => (
-            <Pressable
-              key={index}
-              onPress={() => setSelectedTime(item?.time)}
-              style={
-                selectedTime.includes(item?.time)
-                  ? {
-                    margin: 10,
-                    borderRadius: 7,
-                    padding: 15,
-                    borderColor: "red",
-                    borderWidth: 0.7,
-                  }
-                  : {
-                    margin: 10,
-                    borderRadius: 7,
-                    padding: 15,
-                    borderColor: "gray",
-                    borderWidth: 0.7,
-                  }
-              }
-            >
-              <Text>{item.time}</Text>
-            </Pressable>
-          ))}
-        </ScrollView> */}
-
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginVertical: 5 }}>
-          Delivery Date
+          Delivery Within
         </Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -207,7 +189,7 @@ const PickUpScreen = () => {
 
       {total === 0 ? null : (
         <Pressable
-        onPress={proceedToCart}
+          onPress={proceedToCart}
           style={{
             backgroundColor: "#088F8F",
             marginTop: "auto",
@@ -236,11 +218,9 @@ const PickUpScreen = () => {
             </Text>
           </View>
 
-          <Pressable>
-            <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
-              Proceed to Cart
-            </Text>
-          </Pressable>
+          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>
+            Proceed to Cart
+          </Text>
         </Pressable>
       )}
     </>

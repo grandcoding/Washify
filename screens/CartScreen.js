@@ -48,7 +48,7 @@ const CartScreen = () => {
                 size={24}
                 color="black"
               />
-              <Text>Your Bucket</Text>
+              <Text style={{ marginLeft: 5 }} >Your Bucket</Text>
             </View>
 
             <Pressable
@@ -70,6 +70,7 @@ const CartScreen = () => {
                   }}
                   key={index}
                 >
+
                   <Text style={{ width: 100, fontSize: 16, fontWeight: "500" }}>
                     {item.name}
                   </Text>
@@ -113,7 +114,7 @@ const CartScreen = () => {
                           fontWeight: "600",
                         }}
                       >
-                        {/* {item.quantity} */}
+                        {item.quantity}
                       </Text>
                     </Pressable>
 
@@ -224,7 +225,7 @@ const CartScreen = () => {
                   <Text
                     style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
                   >
-                    selected Date
+                    Pick Up Date
                   </Text>
                   <Text
                     style={{
@@ -233,7 +234,7 @@ const CartScreen = () => {
                       color: "#088F8F",
                     }}
                   >
-                    {/* {route.params.pickUpDate} */}
+                    {route.params.pickUpDate}
                   </Text>
                 </View>
 
@@ -247,7 +248,7 @@ const CartScreen = () => {
                   <Text
                     style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
                   >
-                    No Of Days
+                    Delivery Within
                   </Text>
 
                   <Text
@@ -272,7 +273,7 @@ const CartScreen = () => {
                   <Text
                     style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
                   >
-                    selected Pick Up Time
+                    Selected Pick Up Time
                   </Text>
 
                   <Text
