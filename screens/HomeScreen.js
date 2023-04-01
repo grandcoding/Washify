@@ -9,6 +9,8 @@ import DressItem from '../components/DressItem';
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../ProductReducer";
 import { useNavigation } from '@react-navigation/native';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../Firebase';
 
 const HomeScreen = () => {
   //Navigation Management
@@ -17,14 +19,23 @@ const HomeScreen = () => {
   //Cart Reducer
   const cart = useSelector((state) => state.cart.cart);
   const [items, setItems] = useState([]);
+
   const total = cart.map((item) => item.quantity * item.price).reduce((curr, prev) => curr + prev, 0);
   const product = useSelector((state) => state.product.product);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (product?.length > 0) return;
-    // items?.map((service) => dispatch(getProducts(service)));
-    // };
-    // fetchProducts();
+    if (product.length > 0) return;
+
+    const fetchProducts = async () => {
+      const colRef = collection(db, "types");
+      const docsSnap = await getDocs(colRef);
+      docsSnap.forEach((doc) => {
+        items.push(doc.data());
+      });
+      items?.map((service) => dispatch(getProducts(service)));
+    };
+    fetchProducts();
   }, []);
 
   // console.log(product);
@@ -105,57 +116,7 @@ const HomeScreen = () => {
 
   //===============================
   //Services List begins here
-  const services = [
-    {
-      id: "0",
-      image: "https://cdn-icons-png.flaticon.com/128/4643/4643574.png",
-      name: "Shirt",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "11",
-      image: "https://cdn-icons-png.flaticon.com/128/892/892458.png",
-      name: "T-shirt",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "12",
-      image: "https://cdn-icons-png.flaticon.com/128/9609/9609161.png",
-      name: "Dresses",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "13",
-      image: "https://cdn-icons-png.flaticon.com/128/599/599388.png",
-      name: "Jeans",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "14",
-      image: "https://cdn-icons-png.flaticon.com/128/9431/9431166.png",
-      name: "Sweater",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "15",
-      image: "https://cdn-icons-png.flaticon.com/128/3345/3345397.png",
-      name: "Shorts",
-      quantity: 0,
-      price: 10,
-    },
-    {
-      id: "16",
-      image: "https://cdn-icons-png.flaticon.com/128/293/293241.png",
-      name: "Sleeveless",
-      quantity: 0,
-      price: 10,
-    },
-  ];
+
   //=================================
 
   return (
@@ -206,8 +167,8 @@ const HomeScreen = () => {
         <Services />
 
         {/* Render all the Products */}
-        {services.map((item, index) => (
-            <DressItem item={item} key={index} />
+        {product.map((item, index) => (
+          <DressItem item={item} key={index} />
         ))}
 
       </ScrollView>
