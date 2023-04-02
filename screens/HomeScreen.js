@@ -46,7 +46,7 @@ const HomeScreen = () => {
 
   const [locationServicesEnabled, setlocationServicesEnabled] = useState(false);
   const [displayCurrentAddress, setdisplayCurrentAddress] = useState(
-    "We are loading your location..."
+    "We are loading your live location..."
   );
   useEffect(() => {
     checkIfLocationEnabled();
@@ -127,7 +127,7 @@ const HomeScreen = () => {
         <View
           style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
         >
-          <MaterialIcons name="location-on" size={30} color="#fd5c63" />
+          <MaterialIcons name="location-on" size={30} color="#7E57C2" />
           <View>
             <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
             <Text>{displayCurrentAddress}</Text>
@@ -157,7 +157,7 @@ const HomeScreen = () => {
           }}
         >
           <TextInput placeholder="Search for items or More" />
-          <Feather name="search" size={24} color="#fd5c63" />
+          <Feather name="search" size={24} color="#7E57C2" />
         </View>
 
         {/* Image Carousel */}
@@ -179,7 +179,7 @@ const HomeScreen = () => {
         <Pressable
           onPress={() => navigation.navigate("PickUp")}
           style={{
-            backgroundColor: "#088F8F",
+            backgroundColor: "#7E57C2",
             padding: 10,
             marginBottom: 40,
             margin: 15,

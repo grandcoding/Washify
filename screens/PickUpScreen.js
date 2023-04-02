@@ -191,7 +191,7 @@ const PickUpScreen = () => {
         <Pressable
           onPress={proceedToCart}
           style={{
-            backgroundColor: "#088F8F",
+            backgroundColor: "#7E57C2",
             marginTop: "auto",
             padding: 10,
             marginBottom: 40,

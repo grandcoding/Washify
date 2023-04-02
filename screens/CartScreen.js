@@ -116,7 +116,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 20,
-                          color: "#088F8F",
+                          color: "#7E57C2",
                           paddingHorizontal: 6,
                           fontWeight: "600",
                         }}
@@ -129,7 +129,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 19,
-                          color: "#088F8F",
+                          color: "#7E57C2",
                           paddingHorizontal: 8,
                           fontWeight: "600",
                         }}
@@ -147,7 +147,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 20,
-                          color: "#088F8F",
+                          color: "#7E57C2",
                           paddingHorizontal: 6,
                           fontWeight: "600",
                         }}
@@ -210,7 +210,7 @@ const CartScreen = () => {
                     style={{
                       fontSize: 18,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#7E57C2",
                     }}
                   >
                     FREE  ₹̶ ̶3̶0̶
@@ -251,7 +251,7 @@ const CartScreen = () => {
                     style={{
                       fontSize: 18,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#7E57C2",
                     }}
                   >
                     {route.params.pickUpDate}
@@ -275,7 +275,7 @@ const CartScreen = () => {
                     style={{
                       fontSize: 18,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#7E57C2",
                     }}
                   >
                     {route.params.no_Of_days}
@@ -300,7 +300,7 @@ const CartScreen = () => {
                     style={{
                       fontSize: 18,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#7E57C2",
                     }}
                   >
                     {route.params.selectedTime}
@@ -339,7 +339,7 @@ const CartScreen = () => {
       {total === 0 ? null : (
         <Pressable
           style={{
-            backgroundColor: "#088F8F",
+            backgroundColor: "#7E57C2",
             marginTop: "auto",
             padding: 10,
             marginBottom: 40,
