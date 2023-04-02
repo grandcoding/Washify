@@ -17,6 +17,7 @@
     "expo": "~48.0.9",
     "expo-location": "~15.1.1",
     "expo-status-bar": "~1.4.4",
+    "expo-updates": "~0.16.3",
     "firebase": "^9.15.0",
     "lottie-react-native": "^6.0.0-rc.3",
     "react": "18.2.0",

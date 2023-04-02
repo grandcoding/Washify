@@ -18,6 +18,7 @@ import { auth } from "../Firebase";
 import { ScrollView } from "react-native-gesture-handler";
 
 const LoginScreen = () => {
+  const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -42,9 +43,11 @@ const LoginScreen = () => {
     setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (!authUser) {
+        setUser(null);
         setLoading(false);
       }
-      if (authUser) {
+      if (authUser || user) {
+        setUser(user);
         navigation.navigate("Home");
       }
     });

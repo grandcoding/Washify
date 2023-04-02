@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "laundry-app",
+    "name": "Washify",
     "slug": "laundry-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/main-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/main-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

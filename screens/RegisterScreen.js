@@ -28,33 +28,51 @@ const RegisterScreen = () => {
 
   //Main functionality of register data sending back to database
   const register = () => {
-    if (email === "" || password === "" || phone === "") {
+    if (email === '' || password === '' || phone === '') {
       Alert.alert(
-        "Invalid Details",
-        "Please fill all the details",
+        'Invalid Details',
+        'Please fill all the details',
         [
           {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
         ],
         { cancelable: false }
       );
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log('user credential', userCredential);
+          const user = userCredential._tokenResponse.email;
+          const myUserUid = auth.currentUser.uid;
+
+          setDoc(doc(db, 'users', `${myUserUid}`), {
+            email: user,
+            phone: phone,
+          });
+        })
+        .catch((error) => {
+          console.log('registration error', error);
+          Alert.alert(
+            'Registration failed',
+            'The email or password is already in use. Please login or use a different email.',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ],
+            { cancelable: false }
+          );
+        });
     }
+  };
 
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      console.log("user credential", userCredential);
-      const user = userCredential._tokenResponse.email;
-      const myUserUid = auth.currentUser.uid;
-
-      setDoc(doc(db, "users", `${myUserUid}`), {
-        email: user,
-        phone: phone
-      })
-    })
-  }
 
   return (
     <SafeAreaView
@@ -152,7 +170,7 @@ const RegisterScreen = () => {
                 backgroundColor: "#7E57C2",
                 padding: 15,
                 borderRadius: 7,
-                marginTop:15,
+                marginTop: 15,
                 marginLeft: "auto",
                 marginRight: "auto",
               }}

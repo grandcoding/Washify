@@ -14,6 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import HorizontalDatePicker from '@logisticinfotech/react-native-horizontal-date-picker';
 
 const PickUpScreen = () => {
+  const [address, setAddress] = useState('');
+  const [contact, setContact] = useState('');
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState([]);
   const [delivery, setDelivery] = useState([]);
@@ -25,6 +27,10 @@ const PickUpScreen = () => {
 
 
   const deliveryTime = [
+    {
+      id: "4",
+      name: "Tomorrow",
+    },
     {
       id: "0",
       name: "2-3 Days",
@@ -41,42 +47,13 @@ const PickUpScreen = () => {
       id: "3",
       name: "5-6 Days",
     },
-    {
-      id: "4",
-      name: "Tomorrow",
-    },
   ];
 
-  const times = [
-    {
-      id: "0",
-      time: "11:00 PM",
-    },
-    {
-      id: "1",
-      time: "12:00 PM",
-    },
-    {
-      id: "2",
-      time: "1:00 PM",
-    },
-    {
-      id: "2",
-      time: "2:00 PM",
-    },
-    {
-      id: "4",
-      time: "3:00 PM",
-    },
-    {
-      id: "5",
-      time: "4:00 PM",
-    },
-  ];
+
 
   const navigation = useNavigation();
   const proceedToCart = () => {
-    if (selectedDate.length == 0 || selectedTime.length == 0 || delivery.length == 0) {
+    if (selectedDate.length == 0 || selectedTime.length == 0 || delivery.length == 0 || address.length == 0 || contact.length != 10) {
       Alert.alert(
         "Empty or invalid",
         "Please select all the fields",
@@ -112,9 +89,9 @@ const PickUpScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={{ marginTop: 55 }}>
+      <SafeAreaView style={{backgroundColor: 'white' }}>
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
-          Enter Address
+          Enter Address*
         </Text>
         <TextInput
           style={{
@@ -124,6 +101,23 @@ const PickUpScreen = () => {
             borderRadius: 9,
             margin: 10,
           }}
+          onChangeText={setAddress}
+          placeholder="Enter your complete Address"
+        />
+
+        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
+          Enter Contact Number*
+        </Text>
+        <TextInput
+          style={{
+            padding: 10,
+            borderColor: "gray",
+            borderWidth: 0.7,
+            borderRadius: 9,
+            margin: 10,
+          }}
+          onChangeText={setContact}
+          placeholder="Enter your contact number"
         />
 
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginBottom: 10 }}>
@@ -134,7 +128,7 @@ const PickUpScreen = () => {
           pickerType={'datetime'}
           minDate={new Date()}
           defaultSelected={new Date()}
-          datePickerBG={require('../assets/bg-flower-1.jpg')}
+          datePickerBG={require('../assets/bg-date.jpg')}
           dayFormat={'DD'}
           monthFormat={'MMM'}
           yearFormat={'YY'}

@@ -48,29 +48,13 @@ const CartScreen = () => {
 
   return (
     <>
-      <ScrollView style={{ marginTop: 50 }}>
+      <ScrollView style={{  backgroundColor : 'white'}}>
         {total === 0 ? (
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <View style={{ justifyContent: "center", alignItems: "center"  ,backgroundColor : 'white'}}>
             <Text style={{ marginTop: 40 }}>Your cart is empty</Text>
           </View>
         ) : (
           <>
-            <View
-              style={{
-                padding: 10,
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Ionicons
-                onPress={() => navigation.goBack()}
-                name="arrow-back"
-                size={24}
-                color="black"
-              />
-              <Text style={{ marginLeft: 5 }} >Your Bucket</Text>
-            </View>
-
             <Pressable
               style={{
                 backgroundColor: "white",
@@ -78,6 +62,8 @@ const CartScreen = () => {
                 marginLeft: 10,
                 marginRight: 10,
                 padding: 14,
+                borderWidth: 1,
+                borderColor : '#F5F5F5',
               }}
             >
               {cart.map((item, index) => (
