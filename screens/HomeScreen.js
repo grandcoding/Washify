@@ -121,7 +121,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <ScrollView style={{ backgroundColor: "white", marginTop: 50 }}>
+      <ScrollView style={{ backgroundColor: "white", paddingVertical: 19 }}>
 
         {/* Location and Profile Segment (Top) */}
         <View
@@ -176,26 +176,31 @@ const HomeScreen = () => {
       {total === 0 ? (
         null
       ) : (
-        <Pressable
-          onPress={() => navigation.navigate("PickUp")}
-          style={{
-            backgroundColor: "#7E57C2",
-            padding: 10,
-            marginBottom: 40,
-            margin: 15,
-            borderRadius: 7,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+        <View
+          style={{ backgroundColor: 'white' }}
         >
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>{cart?.length} items |   ₹ {total}</Text>
-            <Text style={{ fontSize: 13, fontWeight: "400", color: "white", marginVertical: 6 }}>Extra charges might apply</Text>
-          </View>
 
-          <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
-        </Pressable>
+          <Pressable
+            onPress={() => navigation.navigate("PickUp")}
+            style={{
+              backgroundColor: "#7E57C2",
+              padding: 10,
+              marginBottom: 40,
+              margin: 15,
+              borderRadius: 7,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <View>
+              <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>{cart?.length} items |   ₹ {total}</Text>
+              <Text style={{ fontSize: 13, fontWeight: "400", color: "white", marginVertical: 6 }}>Extra charges might apply</Text>
+            </View>
+
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
+          </Pressable>
+        </View>
       )}
     </>
 
