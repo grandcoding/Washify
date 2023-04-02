@@ -25,13 +25,18 @@ const LoginScreen = () => {
 
   //Checking if login details exist in user list
   const login = () => {
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      console.log("user credential", userCredential);
-      const user = userCredential.user;
-      console.log("user details", user)
-    })
-  }
-
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("user credential", userCredential);
+        const user = userCredential.user;
+        console.log("user details", user);
+      })
+      .catch((error) => {
+        console.log("login error", error);
+        alert("Wrong credentials. Please try again.");
+      });
+  };
+  
   // If login validated navigate to Home Screen
   useEffect(() => {
     setLoading(true);
