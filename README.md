@@ -1,6 +1,11 @@
-# Laundry App
+# Washify
 
 This is a mobile application built using React Native, Redux, Firebase and Expo that enables users to book laundry services, choose pickup/delivery date and time, and make payments within the app. It also includes real-time notifications for laundry services updates, resulting in a 30% reduction in missed pickups/deliveries.
+
+
+
+https://user-images.githubusercontent.com/85472970/229594251-c4535273-7cdf-4d67-bea8-f9c6da5cf9e4.mp4
+
 
 ## Installation
 
